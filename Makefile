@@ -1,13 +1,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=shadowsocksR-libev
-PKG_VERSION:=v20170613
+PKG_VERSION:=v20170729
 PKG_RELEASE:=1pre
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_RELEASE).tar.gz
-PKG_SOURCE_URL:=https://github.com/breakwa11/shadowsocks-libev.git
+PKG_SOURCE_URL:=https://github.com/shadowsocksrr/shadowsocksr-libev.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=f713aa981169d35ff9483b295d1209c35117d70c
+PKG_SOURCE_VERSION:=035d4b909981984f1bad6a3b4a31017dbac12ea8
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_MAINTAINER:=breakwa11
 
@@ -141,13 +141,13 @@ define Package/shadowsocksr-libev-gfwlist/install
 	$(INSTALL_BIN) ./files/ssr-watchdog $(1)/usr/bin/ssr-watchdog
 	
 	#patch dnsmasq, add ipset gfwlist 
-	$(INSTALL_CONF) ./files/dnsmasq.conf $(1)/etc/dnsmasq.conf
+	$(INSTALL_CONF) ./files/dnsmasq.conf $(1)/etc/dnsmasq.conf.ssr
 	$(INSTALL_DIR) $(1)/etc/dnsmasq.d
 	$(INSTALL_CONF) ./files/gfw_list.conf $(1)/etc/dnsmasq.d/gfw_list.conf
 	$(INSTALL_CONF) ./files/custom_list.conf $(1)/etc/dnsmasq.d/custom_list.conf
 	
 	#patch firewall rule, create ipset gfwlist & redirect traffic
-	$(INSTALL_CONF) ./files/firewall.user $(1)/etc/firewall.user
+	$(INSTALL_CONF) ./files/firewall.user $(1)/etc/firewall.user.ssr
 	
 	#patch dns-forwarder
 	$(INSTALL_DIR) $(1)/etc/config
