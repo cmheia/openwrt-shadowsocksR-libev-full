@@ -150,7 +150,6 @@ define Package/shadowsocksr-libev-gfwlist/install
 	$(INSTALL_CONF) ./files/firewall.user $(1)/etc/firewall.user.ssr
 	
 	#patch dns-forwarder
-	$(INSTALL_DIR) $(1)/etc/config
 	$(INSTALL_CONF) ./files/dns-forwarder.config $(1)/etc/dns-forwarder.ssr
 	
 	#install luci for ssr
